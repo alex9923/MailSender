@@ -1,4 +1,4 @@
-﻿namespace MessageSender.Contracts
+﻿namespace MailSender.Contracts
 {
     public interface IMessageClient<TMesssageType>
     {

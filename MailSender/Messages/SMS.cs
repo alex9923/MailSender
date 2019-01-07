@@ -1,7 +1,7 @@
 ﻿using Twilio;
 using Twilio.Rest.Api.V2010.Account;
-using MessageSender.Contracts;
-namespace MessageSender.Messages
+using MailSender.Contracts;
+namespace MailSender.Messages
 {
     public class SMS : Message<MessageResource>, ISMS
     {

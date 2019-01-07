@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace MessageSender.Contracts
+namespace MailSender.Contracts
 {
     public interface IMail
     {

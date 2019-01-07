@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MessageSender.Contracts
+namespace MailSender.Contracts
 {
     public abstract class Message<T>
     {

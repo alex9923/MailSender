@@ -1,8 +1,8 @@
-﻿using MessageSender.Contracts;
+﻿using MailSender.Contracts;
 using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace MessageSender.Messages
+namespace MailSender.Messages
 {
     public class Mail : Message<MailMessage>, IMail
     {

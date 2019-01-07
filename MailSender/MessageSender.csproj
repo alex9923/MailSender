@@ -62,6 +62,7 @@
     <Compile Include="Contracts\IMail.cs" />
     <Compile Include="Contracts\IMessageClient.cs" />
     <Compile Include="Contracts\ISMS.cs" />
+    <Compile Include="DefaultSenders\GmailDefaultSender.cs" />
     <Compile Include="Messages\Mail.cs" />
     <Compile Include="Contracts\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

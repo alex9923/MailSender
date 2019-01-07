@@ -1,7 +1,7 @@
-﻿using MessageSender.Contracts;
+﻿using MailSender.Contracts;
 using System.Net.Mail;
 
-namespace MessageSender.Clients
+namespace MailSender.Clients
 {
     public class MailClient : IMessageClient<MailMessage>
     {
