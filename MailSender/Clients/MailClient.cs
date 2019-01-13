@@ -1,5 +1,6 @@
-﻿using MailSender.Contracts;
-using System.Net.Mail;
+﻿using System.Net.Mail;
+using System.Windows.Forms;
+using MailSender.Contracts;
 
 namespace MailSender.Clients
 {
@@ -19,9 +20,26 @@ namespace MailSender.Clients
             Credential = credential;
         }
 
-        public void Send<T>(T message) where T : Message<MailMessage>, IMail
+        public bool Send<T>(T message) where T : Message<MailMessage>, IMail
         {
-            CreateSMTPClient().Send(message.GenerateMessage());
+            bool isSendedOK = false;
+            try
+            {
+                if (message.Subject != string.Empty
+                    || message.Subject == string.Empty
+                    && MessageBox.Show("Mail sin asunto, enviar igualmente?",
+                                       "Alerta",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    CreateSMTPClient().Send(message.GenerateMessage());
+                    isSendedOK = true;
+                }
+            }
+            catch
+            {
+            }
+            return isSendedOK;
         }
 
         private SmtpClient CreateSMTPClient()

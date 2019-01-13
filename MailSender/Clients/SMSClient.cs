@@ -5,9 +5,10 @@ namespace MailSender.Clients
 {
     public class SMSClient : IMessageClient<MessageResource>
     {
-        public void Send<T>(T message) where T : Message<MessageResource>, IMail
+        public bool Send<T>(T message) where T : Message<MessageResource>, IMail
         {
             message.GenerateMessage();
+            return true;
         }
     }
 }
