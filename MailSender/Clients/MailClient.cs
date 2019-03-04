@@ -1,5 +1,5 @@
-﻿using System.Net.Mail;
-using System.Windows.Forms;
+﻿using System;
+using System.Net.Mail;
 using MailSender.Contracts;
 
 namespace MailSender.Clients
@@ -15,9 +15,9 @@ namespace MailSender.Clients
 
         public MailClient(int port, string host, System.Net.NetworkCredential credential)
         {
-            Port = port;
-            Host = host;
-            Credential = credential;
+            this.Port = port;
+            this.Host = host;
+            this.Credential = credential;
         }
 
         public bool Send<T>(T message) where T : Message<MailMessage>, IMail
@@ -25,19 +25,15 @@ namespace MailSender.Clients
             bool isSendedOK = false;
             try
             {
-                if (message.Subject != string.Empty
-                    || message.Subject == string.Empty
-                    && MessageBox.Show("Mail sin asunto, enviar igualmente?",
-                                       "Alerta",
-                                       MessageBoxButtons.YesNo,
-                                       MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (message.Subject != string.Empty)
                 {
                     CreateSMTPClient().Send(message.GenerateMessage());
                     isSendedOK = true;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                throw ex;
             }
             return isSendedOK;
         }

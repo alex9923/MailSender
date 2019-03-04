@@ -1,6 +1,7 @@
-﻿using MailSender.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mail;
+using MailSender.Contracts;
 
 namespace MailSender.Messages
 {
@@ -15,16 +16,23 @@ namespace MailSender.Messages
 
         public Mail(MailAddress from, MailAddress[] to, string subject, string body)
         {
-            From = from;
-            Subject = subject;
-            Body = body;
-            To = to;
+            this.From = from;
+            this.Subject = subject;
+            this.Body = body;
+            this.To = to;
         }
-
+        public Mail(string from, string[] to, string subject, string body)
+            : this(new MailAddress(from), to.Select(x => new MailAddress(x)).ToArray(), subject, body)
+        {
+        }
         public Mail(MailAddress from, MailAddress[] to, MailAddress[] cc, string subject, string body)
             : this(from, to, subject, body)
         {
-            CC = cc;
+            this.CC = cc;
+        }
+        public Mail(string from, string[] to, string[] cc, string subject, string body)
+            : this(new MailAddress(from), to.Select(x => new MailAddress(x)).ToArray(),cc.Select(x => new MailAddress(x)).ToArray(), subject, body)
+        {
         }
 
         public override MailMessage GenerateMessage()
@@ -35,9 +43,9 @@ namespace MailSender.Messages
                 Subject = Subject,
                 Body = Body
             };
-            AddElementsToCollection(mailMessage.To, To);
-            AddElementsToCollection(mailMessage.CC, CC);
-            AddElementsToCollection(mailMessage.Attachments, Attachment);
+            AddElementsToCollection(mailMessage.To, this.To);
+            AddElementsToCollection(mailMessage.CC, this.CC);
+            AddElementsToCollection(mailMessage.Attachments, this.Attachment);
             return mailMessage;
         }
     }

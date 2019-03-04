@@ -46,7 +46,6 @@
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +62,7 @@
     <Compile Include="Contracts\IMail.cs" />
     <Compile Include="Contracts\IMessageClient.cs" />
     <Compile Include="Contracts\ISMS.cs" />
+    <Compile Include="DefaultSenders\OutlookDefaultSender.cs" />
     <Compile Include="DefaultSenders\GmailDefaultSender.cs" />
     <Compile Include="Messages\Mail.cs" />
     <Compile Include="Contracts\Message.cs" />
