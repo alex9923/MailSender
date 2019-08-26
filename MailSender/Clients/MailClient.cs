@@ -27,7 +27,9 @@ namespace MailSender.Clients
             {
                 if (message.Subject != string.Empty)
                 {
-                    CreateSMTPClient().Send(message.GenerateMessage());
+                    SmtpClient smtpClient = CreateSMTPClient();
+                    smtpClient.Send(message.GenerateMessage());
+                    smtpClient.Dispose();
                     isSendedOK = true;
                 }
             }
